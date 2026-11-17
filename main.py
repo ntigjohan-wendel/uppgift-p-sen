@@ -1,7 +1,12 @@
+
+
 POUCH_MAX_ITEMS = 10
 
 shouldRun = True
 pouch = [] # Påse
+
+def pouch_clear():
+    pouch.clear()
 
 def pouch_sort(descending = False):
     pouch.sort(reverse=descending)
@@ -71,9 +76,18 @@ def makeChoice():
         case "O":
             pouch_sort()
             print("Sorterade påsen i stigande ordning.")
-        
+
+        # Rensa (clear) påsen.
+        case "C":
+            dc = input("Är du säker på att du vill ta bort alla saker i påsen? (J/N)").strip().upper()
+            if dc == "J":
+                pouch_clear()
+            elif dc == "N":
+                return
+            print("Påsens innehåll togs bort.")
+
         case _:
-            print("Angivna kommandot förstods inte.")
+            print("Angivet kommando förstods inte.")
 
 while shouldRun:
     makeChoice()
